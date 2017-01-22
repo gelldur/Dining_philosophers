@@ -10,7 +10,7 @@ SET(CMAKE_AUTOMOC ON)
 
 SET(SOURCE_FILES
 		src/main.cpp
-		src/mainwindow.cpp src/mainwindow.h
+		src/MainWindow.cpp src/MainWindow.h
 		)
 
 QT5_WRAP_UI(UIS_HDRS
