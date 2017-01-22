@@ -9,8 +9,10 @@ FIND_PACKAGE(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
 SET(CMAKE_AUTOMOC ON)
 
 SET(SOURCE_FILES
+		src/controller/PhilosopherController.cpp src/controller/PhilosopherController.h
 		src/main.cpp
 		src/MainWindow.cpp src/MainWindow.h
+		src/model/Philosopher.cpp src/model/Philosopher.h
 		)
 
 QT5_WRAP_UI(UIS_HDRS
