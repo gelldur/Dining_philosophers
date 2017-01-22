@@ -1,8 +1,62 @@
 #include "MainWindow.h"
 
+#include <cassert>
+#include <cmath>
+
+#include <layout/FlowLayout.h>
+
 MainWindow::MainWindow(QWidget* parent)
-		: QMainWindow(parent)
+		: inherited(parent)
 		, _ui(new Ui::MainWindow)
 {
 	_ui->setupUi(this);
+	getTable()->setLayout(new FlowLayout());
+	//TODO automatic start in: X s
 }
+
+void MainWindow::onStart()
+{
+	auto philosophersCount = _ui->spinBox->value();
+
+	for (int i = 0; i < philosophersCount; ++i)
+	{
+		onAddPhilisopher();
+	}
+	goToTable();
+}
+
+void MainWindow::onAddPhilisopher()
+{
+	static int number = 0;
+
+	auto tableGrid = getTable();
+	tableGrid->layout()->addWidget(new PhilosopherController("Foo-" + std::to_string(++number)));
+
+	//TODO wait for threads
+}
+
+void MainWindow::onRemovePhilosopher()
+{
+	auto tableGrid = getTable();
+	if (tableGrid->layout()->count() < 1)
+	{
+		return;
+	}
+	//Remove last one
+	delete tableGrid->layout()->takeAt(tableGrid->layout()->count() - 1)->widget();
+}
+
+QScrollArea* MainWindow::getTable()
+{
+	assert(_ui->stackedWidget->count() > 1);
+	auto tableGrid = _ui->stackedWidget->widget(1)->findChild<QScrollArea*>("table");
+	assert(tableGrid);
+	return tableGrid;
+}
+
+void MainWindow::goToTable()
+{
+	assert(_ui->stackedWidget->count() > 1);
+	_ui->stackedWidget->setCurrentIndex(1);
+}
+
