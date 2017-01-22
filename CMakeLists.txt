@@ -16,11 +16,19 @@ SET(SOURCE_FILES
 		src/model/Philosopher.cpp src/model/Philosopher.h
 		)
 
-QT5_WRAP_UI(UIS_HDRS
+QT5_WRAP_UI(UI
 		ui/MainWindow.ui
+		ui/philosopherView.ui
+		)
+QT5_ADD_RESOURCES(RESOURCES
+		res/res.qrc
 		)
 
-ADD_EXECUTABLE(Dining_philosophers ${SOURCE_FILES} ${UIS_HDRS})
+ADD_EXECUTABLE(Dining_philosophers
+		${SOURCE_FILES}
+		${UI}
+		${RESOURCES}
+		)
 
 TARGET_INCLUDE_DIRECTORIES(Dining_philosophers PRIVATE
 		src/
