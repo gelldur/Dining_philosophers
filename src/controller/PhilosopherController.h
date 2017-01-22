@@ -3,15 +3,21 @@
 //
 #pragma once
 
-#include <model/Philosopher.h>
+#include <QtWidgets/QWidget>
+#include "PhilosopherMindController.h"
 
-class PhilosopherController
+class PhilosopherController : public QWidget
 {
+Q_OBJECT
+	using inherited = QWidget;
 public:
+	explicit PhilosopherController(const std::string& name, QWidget* parent = nullptr);
 
+public slots:
+	void onKill();
 
 private:
-	Philosopher _model;
+	PhilosopherMindController _thread;
 };
 
 
