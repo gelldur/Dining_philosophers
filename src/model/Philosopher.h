@@ -16,6 +16,7 @@ public:
 	};
 
 	State getState() const;
+	std::string getStateName() const;
 	const std::string& getName() const;
 
 	/**

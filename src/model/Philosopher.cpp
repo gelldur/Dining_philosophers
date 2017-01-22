@@ -24,3 +24,16 @@ bool Philosopher::changeState(Philosopher::State state)
 	//TODO implement
 	return false;
 }
+
+std::string Philosopher::getStateName() const
+{
+	switch (_state)
+	{
+		case State::EATING:
+			return "Eating!";
+		case State::THINKING:
+			return "Thinking";
+		default:
+			return "unknown";
+	}
+}
