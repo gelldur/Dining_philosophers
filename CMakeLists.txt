@@ -14,7 +14,7 @@ SET(SOURCE_FILES
 		)
 
 QT5_WRAP_UI(UIS_HDRS
-		ui/mainwindow.ui
+		ui/MainWindow.ui
 		)
 
 ADD_EXECUTABLE(Dining_philosophers ${SOURCE_FILES} ${UIS_HDRS})
