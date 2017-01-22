@@ -22,3 +22,10 @@ We can represent philosophers as nodes and forks as edges in graph.
 
 ## Ilustration
 ![Ilustration](/readme_assets/problem.png)
+
+[3 suggested resolutions:](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
+- Arbitrator solution
+- Resource hierarchy solution by Dijkstra
+- Chandy/Misra solution
+
+I will implement last one.
