@@ -13,6 +13,7 @@ SET(SOURCE_FILES
 		src/layout/FlowLayout.cpp src/layout/FlowLayout.h
 		src/main.cpp
 		src/MainWindow.cpp src/MainWindow.h
+		src/model/ForkPair.cpp src/model/ForkPair.h
 		src/model/Philosopher.cpp src/model/Philosopher.h
 		)
 
