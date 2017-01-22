@@ -15,3 +15,10 @@ Requirements:
 ----
 
 I'm using cmake for easy compile :)
+
+
+Task is "simple" deadlock problem.
+We can represent philosophers as nodes and forks as edges in graph.
+
+## Ilustration
+![Ilustration](/readme_assets/problem.png)
