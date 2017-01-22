@@ -10,6 +10,7 @@ SET(CMAKE_AUTOMOC ON)
 
 SET(SOURCE_FILES
 		src/controller/PhilosopherController.cpp src/controller/PhilosopherController.h
+		src/layout/FlowLayout.cpp src/layout/FlowLayout.h
 		src/main.cpp
 		src/MainWindow.cpp src/MainWindow.h
 		src/model/Philosopher.cpp src/model/Philosopher.h
