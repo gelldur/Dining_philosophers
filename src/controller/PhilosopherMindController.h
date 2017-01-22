@@ -4,6 +4,7 @@
 #pragma once
 
 #include <chrono>
+#include <memory>
 
 #include <QtCore/QThread>
 
@@ -17,20 +18,31 @@ Q_OBJECT
 	using inherited = QThread;
 public:
 	PhilosopherMindController(const std::string& name, QObject* parent);
-public slots:
+	virtual ~PhilosopherMindController();
+
 	void stop();
 
+public slots:
 	const Philosopher& getModel() const;
+
+signals:
+	void updateUI();
 
 protected:
 	void run() override;
 
 private:
 	std::chrono::seconds _eatingTime = std::chrono::seconds{5};
-	Philosopher _model;
+	std::chrono::seconds _restTime = std::chrono::seconds{2};
+
 	ForkPair _forkPair;
+
+	Philosopher _model;
 	QMutex _mutex;
 	bool _working = true;
+
+	void setWorking(bool isWorking);
+	bool isWorking();
 };
 
 
