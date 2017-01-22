@@ -21,8 +21,12 @@ const std::string& Philosopher::getName() const
 
 bool Philosopher::changeState(Philosopher::State state)
 {
-	//TODO implement
-	return false;
+	if (_state == state)
+	{
+		return false;
+	}
+	_state = state;
+	return true;
 }
 
 std::string Philosopher::getStateName() const
