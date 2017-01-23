@@ -5,22 +5,50 @@
 
 #include <list>
 #include <mutex>
+#include <atomic>
 
 class ForkPair
 {
 public:
-	ForkPair();
+	ForkPair(const std::string& owner);
 	~ForkPair();
 
-	void startUse();
+	/**
+	 * @return true if we successfully obtain forks, false otherwise
+	 */
+	bool startUse();
+
+	/**
+	 * Do nothing if we do not acquire forks
+	 */
 	void stopUse();
 
-private:
-	static std::list<std::mutex> _forks;
-	std::list<std::mutex>::iterator _myFork;
-	std::pair<std::list<std::mutex>::iterator, std::list<std::mutex>::iterator> _myCurrentForks;
+	/**
+	 * If we don't acquire forks it will return false
+	 * @return true if someone want to quit, false otherwise
+	 */
+	bool shouldWeFinish() const;
 
-	std::pair<std::list<std::mutex>::iterator, std::list<std::mutex>::iterator> getForks() const;
+	void willBeRemoved();
+
+private:
+	static std::mutex _forksLock;//Simple lock for all forks. Used when someone sits down or want to go
+	struct Fork
+	{
+		std::string owner;
+		std::mutex mutex;
+		std::atomic<bool> isReady;
+		std::atomic<bool> isUsed;
+		std::atomic<bool> isInvalid;
+	};
+	static std::list<Fork> _forks;
+	std::list<Fork>::iterator _myFork;
+	std::pair<std::list<Fork>::iterator, std::list<Fork>::iterator> _myCurrentForks;
+
+	std::pair<std::list<Fork>::iterator, std::list<Fork>::iterator> getForks() const;
+	void rearrange();
+	static bool isAnyUsed();
+	static bool isAnyReady();
 };
 
 

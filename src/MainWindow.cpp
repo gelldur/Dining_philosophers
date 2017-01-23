@@ -27,12 +27,11 @@ void MainWindow::onStart()
 
 void MainWindow::onAddPhilisopher()
 {
-	static int number = 0;
+	static int number = 0;//integer for name generation
 
 	auto tableGrid = getTable();
+	//Executed on main thread
 	tableGrid->layout()->addWidget(new PhilosopherController("Foo-" + std::to_string(++number)));
-
-	//TODO wait for threads
 }
 
 void MainWindow::onRemovePhilosopher()
@@ -43,7 +42,9 @@ void MainWindow::onRemovePhilosopher()
 		return;
 	}
 	//Remove last one
-	delete tableGrid->layout()->takeAt(tableGrid->layout()->count() - 1)->widget();
+	auto philosopher = dynamic_cast<PhilosopherController*>(tableGrid->layout()
+			->takeAt(tableGrid->layout()->count() - 1)->widget());
+	philosopher->onKill();
 }
 
 QScrollArea* MainWindow::getTable()

@@ -19,7 +19,14 @@ public:
 	virtual ~PhilosopherController();
 
 public slots:
+	/**
+	 * Philosopher sends signall to kill. Called by button "kill"
+	 */
 	void onKill();
+
+	/**
+	 * When something changed in model this method will be called to update UI
+	 */
 	void onUpdateUI();
 
 protected:

@@ -20,6 +20,10 @@ public:
 	PhilosopherMindController(const std::string& name, QObject* parent);
 	virtual ~PhilosopherMindController();
 
+	/**
+	 * Stops thread from working.
+	 * It is safe to call it multiple times
+	 */
 	void stop();
 
 public slots:
@@ -32,8 +36,7 @@ protected:
 	void run() override;
 
 private:
-	std::chrono::seconds _eatingTime = std::chrono::seconds{5};
-	std::chrono::seconds _restTime = std::chrono::seconds{2};
+	std::chrono::seconds _eatingTime = std::chrono::seconds{3};
 
 	ForkPair _forkPair;
 
